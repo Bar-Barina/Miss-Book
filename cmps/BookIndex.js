@@ -4,15 +4,18 @@ import BookFilter from './BookFilter.js'
 import BookList from './BookList.js'
 
 import BookDetails from './BookDetails.js'
+import BookEdit from './BookEdit.js'
 
 export default {
   template: `
         <section class="book-index">
-            <BookFilter @filter="setFilterBy"/>
-            <BookList
-            v-if="books" 
-            :books="filteredBooks" 
-            @show-details="showBookDetails"/>
+          <BookFilter @filter="setFilterBy"/>
+          <BookList
+          v-if="books" 
+          @remove="removeBook"
+          :books="filteredBooks" 
+          @show-details="showBookDetails"/>
+          <BookEdit @book-saved="onSaveBook"/>
             <BookDetails 
                 v-if="selectedBook" 
                 @hide-details="selectedBook = null"
@@ -27,20 +30,19 @@ export default {
     }
   },
   methods: {
-    // removeCar(carId) {
-    //     carService.remove(carId)
-    //         .then(() => {
-    //             const idx = this.cars.findIndex(car => car.id === carId)
-    //             this.cars.splice(idx, 1)
-    //         })
-    // },
+    removeBook(bookId) {
+        bookService.remove(bookId)
+            .then(() => {
+                const idx = this.books.findIndex(book => book.id === bookId)
+                this.books.splice(idx, 1)
+            })
+    },
     showBookDetails(bookId) {
       this.selectedBook = this.books.find((book) => book.id === bookId)
-    //   console.log(bookId)
     },
-    // onSaveCar(newCar) {
-    //     this.cars.unshift(newCar)
-    // },
+    onSaveBook(newBook) {
+        this.books.unshift(newBook)
+    },
     setFilterBy(filterBy) {
       this.filterBy = filterBy
     },
@@ -59,5 +61,6 @@ export default {
     BookList,
     BookFilter,
     BookDetails,
+    BookEdit,
   },
 }

@@ -4,7 +4,7 @@ export default {
     template: `
         <article class="book-preview">
             <h2>{{ book.title }}</h2>
-            <h3>{{ book.amount }}</h3>
+            <h3>{{ book.listPrice.amount + book.listPrice.currencyCode }}</h3>
         </article>
     `,
 }

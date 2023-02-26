@@ -46,12 +46,12 @@ export default {
       return { red: currAmount > 150, green: currAmount < 20 }
     },
     handleSale() {
-        const onSale = this.book.listPrice.isOnSale
-        if (onSale) return onSale + ' 🤑'
-        else return onSale + ' 🥺'
-      },
+      const onSale = this.book.listPrice.isOnSale
+      if (onSale) return onSale + ' 🤑'
+      else return onSale + ' 🥺'
+    },
   },
   components: {
     LongTxt,
-}
+  },
 }
