@@ -1,27 +1,30 @@
 import BookPreview from './BookPreview.js'
 
 export default {
-    props:['books'],
-    template: `
+  props: ['books'],
+  template: `
         <section class="book-list">
             <ul>
                 <li v-for="book in books" :key="book.id">
                     <BookPreview :book="book"/>
-                    <button @click="showDetails(book.id)">Details</button>
-                    <button @click="remove(book.id)">x</button> 
+                    <div class="btns">
+                    <button class="details-btn" @click="showDetails(book.id)">Details</button>
+                    <button class="remove-btn"  @click="remove(book.id)">x</button> 
+                   </div>
                 </li>
+                
             </ul>
         </section>
     `,
-    methods: {
-        remove(bookId) {
-            this.$emit('remove', bookId)
-        },
-        showDetails(bookId){
-            this.$emit('show-details', bookId)
-        },
+  methods: {
+    remove(bookId) {
+      this.$emit('remove', bookId)
     },
-    components: {
-        BookPreview,
-    }
+    showDetails(bookId) {
+      this.$emit('show-details', bookId)
+    },
+  },
+  components: {
+    BookPreview,
+  },
 }

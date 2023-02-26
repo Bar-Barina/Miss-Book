@@ -1,18 +1,27 @@
 button {
     cursor: pointer;
     background-color: var(--clr2bg);
-    margin: 0.5em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
     border: 0;
-    padding: 0.5em 0.8em;
     border-radius: 4px;   
 }
 
 button:hover {
     background-color: var(--clr2);
-    color: white;
+    color: red;
     transition: .3s;
 }
 input:focus {
     background-color: var(--clr1bg);
     transition: background-color 1s;
+}
+
+.details-btn {
+    margin-top: 31%;
+    margin-left: -10%;
+}
+
+.remove-btn {
+    margin-left: 70%;
 }

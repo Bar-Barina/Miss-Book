@@ -2,9 +2,10 @@ export default {
     name: 'bookPreview',
     props: ['book'],
     template: `
-        <article class="book-preview">
-            <h2>{{ book.title }}</h2>
-            <h3>{{ book.listPrice.amount + book.listPrice.currencyCode }}</h3>
-        </article>
+        <fieldset class="book-preview">
+            <legend>{{ book.listPrice.amount + book.listPrice.currencyCode }}</legend>
+            <img :src="book.thumbnail" alt="thumbnail">
+            <h3>{{ book.title }}</h3>
+        </fieldset>
     `,
 }

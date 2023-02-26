@@ -17,3 +17,7 @@
 @import 'cmps/BookDetails.css';
 @import 'cmps/BookFilter.css';
 @import 'cmps/BookList.css';
+@import 'cmps/BookPreview.css';
+@import 'cmps/BookEdit.css';
+@import 'cmps/HomePage.css';
+@import 'cmps/AboutPage.css';

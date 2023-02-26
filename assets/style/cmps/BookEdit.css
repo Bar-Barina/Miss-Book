@@ -1,0 +1,9 @@
+.book-edit {
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(180, 180, 180);
+}
+
+input {
+    margin-left: 10px;
+}
