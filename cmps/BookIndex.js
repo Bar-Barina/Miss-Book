@@ -9,7 +9,9 @@ export default {
   template: `
         <section class="book-index">
             <BookFilter @filter="setFilterBy"/>
-            <BookList :books="books" 
+            <BookList
+            v-if="books" 
+            :books="filteredBooks" 
             @show-details="showBookDetails"/>
             <BookDetails 
                 v-if="selectedBook" 
@@ -21,7 +23,7 @@ export default {
     return {
       books: null,
       selectedBook: null,
-      // filterBy: {},
+      filterBy: {},
     }
   },
   methods: {
@@ -44,13 +46,16 @@ export default {
     },
   },
   computed: {
-    // filteredBooks() {
-    // }
+    filteredBooks() {
+        const regex = new RegExp(this.filterBy.title, 'i')
+        return this.books.filter(book => regex.test(book.title))
+    }
   },
   created() {
     bookService.query().then((books) => (this.books = books))
   },
   components: {
+    BookFilter,
     BookList,
     BookFilter,
     BookDetails,

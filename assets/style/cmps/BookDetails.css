@@ -13,3 +13,7 @@
 .book-details button {
   justify-self: end;
 }
+
+.book-details span {
+    font-weight: bold;
+}
