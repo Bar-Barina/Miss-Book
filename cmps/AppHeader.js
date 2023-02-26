@@ -4,7 +4,7 @@ export default {
             <h1>Miss Book</h1>
             <nav>
                 <a @click="setRoute('HomePage')" href="#">Home</a>
-                <!-- <a @click="setRoute('CarIndex')" href="#">Cars</a> -->
+                <a @click="setRoute('BookIndex')" href="#">Books</a>
                 <a @click="setRoute('AboutPage')" href="#">About</a>
             </nav>
         </header>

@@ -1,0 +1,15 @@
+.book-details {
+  display: grid;
+
+  padding: 10px;
+  background-color: rgb(220, 218, 163);
+  margin-block-start: 10px;
+  border: 1px solid black;
+}
+.book-details img {
+  width: 200px;
+  justify-self: center;
+}
+.book-details button {
+  justify-self: end;
+}

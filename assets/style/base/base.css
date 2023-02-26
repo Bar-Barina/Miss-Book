@@ -6,6 +6,7 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: var(--gray3);
+    background-color: rgb(183, 215, 188);
 }
 
 h1,
