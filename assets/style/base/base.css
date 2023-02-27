@@ -1,29 +1,18 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+  margin: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
-    color: var(--gray3);
-    background-color: rgb(250, 250, 250);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-    font-weight: normal;
-    margin: 0 0 0.5em;
+  color: var(--gray3);
+  background-color: rgb(250, 250, 250);
 }
 
 a {
-    text-decoration: none;
-    color: unset;
+  /* text-decoration: none; */
+  color: unset;
 }
 
 /* Dont stretch my Media */
@@ -32,11 +21,11 @@ img,
 embed,
 video,
 object {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 /* Simple and useful CSS Debugging Technique */
 
 .debug * {
-    outline: 1px solid gold;
+  outline: 1px solid gold;
 }

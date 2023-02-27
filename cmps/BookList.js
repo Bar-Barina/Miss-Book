@@ -4,16 +4,12 @@ export default {
   props: ['books'],
   template: `
         <section class="book-list">
-            <ul>
-                <li v-for="book in books" :key="book.id">
+                <div v-for="book in books" :key="book.id" class="book-preview">
                     <BookPreview :book="book"/>
-                    <div class="btns">
-                    <button class="details-btn" @click="showDetails(book.id)">Details</button>
-                    <button class="remove-btn"  @click="remove(book.id)">x</button> 
-                   </div>
-                </li>
-                
-            </ul>
+                    <RouterLink :to="'/book/'+book.id">Details</RouterLink> |
+                    <RouterLink :to="'/book/edit/'+book.id">Edit</RouterLink> |
+                    <button class="remove-btn" @click="remove(book.id)">x</button> 
+                </div>  
         </section>
     `,
   methods: {

@@ -1,9 +1,10 @@
-import LongTxt from './LongTxt.js'
+import { bookService } from "../services/book.service.js"
+
+import LongTxt from '../cmps/LongTxt.js'
 
 export default {
-  props: ['book'],
   template: `
-        <section class="book-details">
+        <section class="book-details" v-if="book">
             <h2><span>Title:</span> {{ book.title }}</h2>
             <h3><span>Subtitle:</span> {{ book.subtitle }}</h3>
             <h3><span>Authors:</span> {{ authors }}</h3>
@@ -20,13 +21,22 @@ export default {
             <h4 v-if="book.listPrice.isOnSale">ON SALE!</h4>
          
           <img :src="book.thumbnail" alt="thumbnail">
-            <button @click="closeDetails">Close</button>
+          <RouterLink to="/book">Back to list</RouterLink>
         </section>
     `,
-  methods: {
-    closeDetails() {
-      this.$emit('hide-details')
+      data() {
+        return {
+            book : null
+        }
     },
+    created() {
+      console.log('Params:',  this.$route.params)
+      const {bookId} = this.$route.params
+      bookService.get(bookId)
+          .then(book => this.book = book)
+  },
+  methods: {
+
   },
   computed: {
     handleReadingState() {

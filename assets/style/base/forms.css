@@ -17,11 +17,3 @@ input:focus {
     transition: background-color 1s;
 }
 
-.details-btn {
-    margin-top: 31%;
-    margin-left: -10%;
-}
-
-.remove-btn {
-    margin-left: 70%;
-}
