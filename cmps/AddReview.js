@@ -1,14 +1,15 @@
-// import bookService from '../services.bookService.js'
+import { bookService } from '../services/book.service.js'
 
 export default {
+  props: ['bookId'],
   template: `
-    <form>
+    <form @submit.prevent="saveReview">
         <h2>Add A Review!</h2>
       <label for="fullname">Fullname:</label>
-      <input type="text" id="fullname" v-model="fullname">
+      <input type="text" class="fullname" v-model="review.fullname">
       <hr>
       <label for="rating">Rating:</label>
-      <select id="rating" v-model.number="rating">
+      <select class="rating" v-model.number="review.rating">
         <option value="1">1 star</option>
         <option value="2">2 stars</option>
         <option value="3">3 stars</option>
@@ -17,7 +18,7 @@ export default {
       </select>
       <hr>
       <label for="readAt">Read at:</label>
-      <input type="date" id="readAt" v-model="readAt">
+      <input type="date" class="readAt" v-model="review.readAt">
       <hr>
       <button type="submit">Submit</button>
       <hr>
@@ -25,19 +26,23 @@ export default {
     `,
   data() {
     return {
-      fullname: '',
-      rating: 1,
-      readAt: '',
-      bookReviews: [],
+      review: {
+        fullname: '',
+        rating: 1,
+        readAt: '',
+      },
     }
   },
   mounted() {
-
-  },
-  methods: {
     
   },
+  methods: {
+    saveReview() {
+      console.log('review saved!')
+      bookService.addReview(this.bookId, this.review)
+    },
+  },
   components: {
-    // bookService,
+    bookService,
   },
 }

@@ -16,7 +16,7 @@ export default {
   },
   created() {
     this.unsubscribe = eventBusService.on('show-msg', (msg) => {
-      console.log('Msg:', msg)
+      // console.log('Msg:', msg)
       this.msg = msg
       setTimeout(() => {
         this.msg = null

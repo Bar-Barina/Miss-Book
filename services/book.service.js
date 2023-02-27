@@ -3,15 +3,9 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
-import booksDB from "./../data/book.json" assert { type: "json" }
+import booksDB from './../data/book.json' assert { type: 'json' }
 
 const BOOK_KEY = 'bookDB'
-
-
-// createData()
-// function createData() {
-//   utilService.saveToStorage(BOOK_KEY, booksDB)
-// }
 
 _createBooks()
 
@@ -21,6 +15,8 @@ export const bookService = {
   remove,
   save,
   getEmptyBook,
+  addReview,
+  removeRev,
 }
 
 function query(filterBy = {}) {
@@ -43,6 +39,14 @@ function get(bookId) {
 function remove(bookId) {
   return storageService.remove(BOOK_KEY, bookId)
 }
+function removeRev(bookId, reviewId) {
+  return get(bookId)
+  .then((book) => {
+    const idx = book.reviews.findIndex(review => review.id === reviewId)
+    book.reviews.splice(idx, 1)
+    return save(book)
+  })
+}
 
 function save(book) {
   if (book.id) {
@@ -53,7 +57,7 @@ function save(book) {
 }
 
 function getEmptyBook(title = '', amount = 0) {
-  return { id: '', title, listPrice:amount }
+  return { id: '', title, listPrice: amount }
 }
 
 function _createBooks() {
@@ -68,4 +72,13 @@ function _createBook(title, amount = 250) {
   const book = getEmptyBook(title, amount)
   book.id = utilService.makeId()
   return book
+}
+
+function addReview(bookId, review) {
+  review.id = utilService.makeId()
+  storageService.get(BOOK_KEY, bookId).then((book) => {
+    if (!book.reviews) book.reviews = []
+    book.reviews.push(review)
+    save(book)
+  })
 }
