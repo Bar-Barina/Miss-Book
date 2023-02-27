@@ -9,7 +9,7 @@ export default {
         <section class="book-index">
           <div class="actions-container">
           <BookFilter @filter="setFilterBy"/>
-        <RouterLink to="/book/edit">Add a book</RouterLink>
+        <RouterLink to="/book/edit"> <i class="fa-solid fa-book"></i> Add a book</RouterLink>
          </div>
           <BookList 
           v-if="books" 

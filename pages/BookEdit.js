@@ -4,12 +4,15 @@ import { eventBusService } from "../services/event-bus.service.js"
 export default {
   template: `
         <section class="book-edit">
-        <h2>{{(book.id)? 'Edit' : 'Add'}} a book</h2>
-            <form @submit.prevent="save">
+        <h2>{{(book.id)? 'Edit' : 'Add'}} a book <i class="fa-solid fa-book"></i></h2>
+            <form @submit.prevent="save" class="edit-form">
+                <label for="text">Book Title ------></label>
                 <input type="text" v-model="book.title" placeholder="Title">
+                <label for="text">Book Price ------></label>
                 <input type="number" v-model.number="book.amount">
                 <button>Save</button>
             </form>
+            <img src="assets/img/BookEdit.jpg" class="book-editor"/>
         </section>
     `,
   data() {

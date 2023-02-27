@@ -6,8 +6,9 @@ export default {
                 @input="filter" 
                 placeholder="Search"
                 type="text" />
-        </section>
-    `,
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </section>
+            `,
     data() {
         return {
             filterBy: { title: ''},
