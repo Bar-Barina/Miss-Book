@@ -17,10 +17,3 @@ input:focus {
   transition: background-color 1s;
 }
 
-form {
-    display: grid;
-  text-align: center;
-  border: 1px solid black;
-  /* width: 21%; */
-  padding: 15px;
-}

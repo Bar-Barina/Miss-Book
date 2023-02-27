@@ -1,8 +1,6 @@
-
- .user-review {
-    display: grid;
+.user-review {
+  display: grid;
   text-align: center;
   border: 1px solid black;
-  /* width: 21%; */
-  padding: 15px;
- }
+  list-style: none;
+}

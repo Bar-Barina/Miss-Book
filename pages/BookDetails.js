@@ -8,25 +8,27 @@ import ReviewList from '../cmps/ReviewList.js'
 export default {
   template: `
         <section class="book-details" v-if="book">
-            <h2><span>Title:</span> {{ book.title }}</h2>
-            <h3><span>Subtitle:</span> {{ book.subtitle }}</h3>
-            <h3><span>Authors:</span> {{ authors }}</h3>
-            <h3><span>Published Date:</span> {{book.publishedDate}} {{ handleDateState }}</h3>
-            <LongTxt :txt="book.description" />
-            <h3><span>Page Count:</span>{{book.pageCount}} {{ handleReadingState }}</h3>
-            <h3><span>Categories:</span> {{ book.categories[0] }}</h3>
-            <h3><span>Language:</span> {{ book.language }}</h3>
-            
-            <span>Amount: 
-              <span :class="handleAmountClass">{{ formattedPrice }}</span>
-           </span>
-
-            <h4 v-if="book.listPrice.isOnSale">ON SALE!</h4>
-         
-          <img :src="book.thumbnail" alt="thumbnail">
           <RouterLink to="/book">Back to list</RouterLink>
+          <h2>{{ book.title }} by {{ authors }}</h2>
+          <LongTxt :txt="book.description" />
+          <h4 v-if="book.listPrice.isOnSale">ON SALE!</h4>
+          <span :class="handleAmountClass">{{ formattedPrice }}</span>
+          <hr>
+          <img :src="book.thumbnail" alt="thumbnail">
+            <div class="extra-details">
+            <p><span>Published Date:</span> {{book.publishedDate}} {{ handleDateState }}</p>
+            <p><span>Page Count: </span>{{book.pageCount}} {{ handleReadingState }}</p>
+            <p><span>Categories:</span> {{ book.categories[0] }}</p>
+            <p><span>Language:</span> {{ book.language }}</p>
+           </div>
+          
+        
+
+         
+          <div class="review-section">
           <AddReview :bookId="book.id" />
           <ReviewList :book="book" @remove="removeReview" />
+        </div>
         </section>
     `,
   data() {

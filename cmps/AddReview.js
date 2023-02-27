@@ -4,11 +4,12 @@ export default {
   props: ['bookId'],
   template: `
     <form @submit.prevent="saveReview">
+        <div class="user-review-form">
         <h2>Add A Review!</h2>
       <label for="fullname">Fullname:</label>
       <input type="text" class="fullname" v-model="review.fullname">
       <hr>
-      <label for="rating">Rating:</label>
+      <label for="rating">Rating:</label>  
       <select class="rating" v-model.number="review.rating">
         <option value="1">1 star</option>
         <option value="2">2 stars</option>
@@ -21,6 +22,7 @@ export default {
       <input type="date" class="readAt" v-model="review.readAt">
       <hr>
       <button type="submit">Submit</button>
+</div>
       <hr>
     </form>
     `,
@@ -34,7 +36,7 @@ export default {
     }
   },
   mounted() {
-    
+
   },
   methods: {
     saveReview() {

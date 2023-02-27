@@ -7,11 +7,40 @@ body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
   color: var(--gray3);
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(235, 235, 235);
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  overflow: hidden;
+  display: grid;
+  justify-content: space-around;
+  /* text-align: center; */
+  border: 1px solid black;
+  padding: 15px;
+}
+input {
+  float: right;
+  clear: both;
+  width: 13.2em;
+}
+select {
+  overflow: hidden;
+  float: right;
+  clear: both;
+  width: 13.2em;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
 }
 
 a {
-  /* text-decoration: none; */
+  text-decoration: none;
   color: unset;
 }
 

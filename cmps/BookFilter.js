@@ -1,7 +1,7 @@
 export default {
     template: `
         <section class="book-filter">
-            <input 
+            <input class="search"
                 v-model="filterBy.title"
                 @input="filter" 
                 placeholder="Search"
