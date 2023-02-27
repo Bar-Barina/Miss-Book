@@ -1,6 +1,7 @@
 import { bookService } from "../services/book.service.js"
 
 import LongTxt from '../cmps/LongTxt.js'
+import AddReview from '../cmps/AddReview.js'
 
 export default {
   template: `
@@ -22,6 +23,7 @@ export default {
          
           <img :src="book.thumbnail" alt="thumbnail">
           <RouterLink to="/book">Back to list</RouterLink>
+          <AddReview />
         </section>
     `,
       data() {
@@ -30,7 +32,7 @@ export default {
         }
     },
     created() {
-      console.log('Params:',  this.$route.params)
+      // console.log('Params:',  this.$route.params)
       const {bookId} = this.$route.params
       bookService.get(bookId)
           .then(book => this.book = book)
@@ -64,5 +66,6 @@ export default {
   },
   components: {
     LongTxt,
+    AddReview,
   },
 }
