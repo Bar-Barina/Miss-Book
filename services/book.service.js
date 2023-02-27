@@ -8,12 +8,12 @@ import booksDB from "./../data/book.json" assert { type: "json" }
 const BOOK_KEY = 'bookDB'
 
 
-createData()
-function createData() {
-  utilService.saveToStorage(BOOK_KEY, booksDB)
-}
+// createData()
+// function createData() {
+//   utilService.saveToStorage(BOOK_KEY, booksDB)
+// }
 
-// _createBooks()
+_createBooks()
 
 export const bookService = {
   query,
@@ -59,10 +59,7 @@ function getEmptyBook(title = '', amount = 0) {
 function _createBooks() {
   let books = utilService.loadFromStorage(BOOK_KEY)
   if (!books || !books.length) {
-    books = []
-    books.push(_createBook('Harry Potter', 120))
-    books.push(_createBook('Nerds', 100))
-    books.push(_createBook('Love', 150))
+    books = booksDB
     utilService.saveToStorage(BOOK_KEY, books)
   }
 }

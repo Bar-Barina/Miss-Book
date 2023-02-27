@@ -1,25 +1,33 @@
 export default {
-  props: ['txt'],
+  props: {
+      txt: {
+          type: String,
+          required: true,
+      },
+      length: {
+          type: Number,
+          required: false,
+          default: 100,
+      },
+  },
   template: `
-               Description: {{readMoreLess}}
-               <button @click="isShown = !isShown">
-                <span v-if="isShown">Read more</span>
-                <span v-if="!isShown">Read less</span>
-            </button>
-    `,
+             Description: {{displayTxt}}
+             <button @click="isShown = !isShown" v-if="txt.length > length">
+              Read {{isShown ? 'less' : 'more'}}
+              </button>
+  `,
   data() {
-    return {
-      isShown: false,
-    }
+      return {
+          isShown: false,
+      };
   },
 
-  methods: {
-
-  },
+  methods: {},
   computed: {
-    readMoreLess() {
-      if (this.isShown && this.txt.length > 100) return this.txt.slice(0, 100)
-      else return this.txt
-    },
+      displayTxt() {
+          if (!this.isShown && this.txt.length > this.length)
+              return this.txt.slice(0, this.length) + '...';
+          return this.txt;
+      },
   },
-}
+};
