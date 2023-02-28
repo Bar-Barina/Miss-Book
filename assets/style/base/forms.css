@@ -9,7 +9,8 @@ button {
 
 button:hover {
   background-color: var(--clr2);
-  color: red;
+  color: rgb(111, 163, 163);
+  font-size: 17px;
   transition: 0.3s;
 }
 input:focus {

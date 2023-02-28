@@ -42,6 +42,7 @@ li {
 a {
   text-decoration: none;
   color: unset;
+  justify-self: baseline;
 }
 
 /* Dont stretch my Media */

@@ -9,12 +9,13 @@ export default {
   template: `
         <section class="book-details" v-if="book">
           <RouterLink to="/book">Back to list</RouterLink>
-          <h2>{{ book.title }} by {{ authors }}</h2>
+          <h2>{{ book.title }} by <span class="authors">{{ authors }}</span></h2>
           <LongTxt :txt="book.description" />
-          <h4 v-if="book.listPrice.isOnSale">ON SALE!</h4>
+          <h4 class="sale" v-if="book.listPrice.isOnSale">ON SALE!</h4>
           <span :class="handleAmountClass">{{ formattedPrice }}</span>
           <hr>
           <img :src="book.thumbnail" alt="thumbnail">
+          <hr>
             <div class="extra-details">
             <p><span>Published Date:</span> {{book.publishedDate}} {{ handleDateState }}</p>
             <p><span>Page Count: </span>{{book.pageCount}} {{ handleReadingState }}</p>

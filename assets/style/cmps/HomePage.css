@@ -1,8 +1,12 @@
 .home-page {
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 .home-img {
-width: 100%;
+  width: 100%;
+}
+
+.router-link-active {
+  border-top: 2px solid black;
 }
