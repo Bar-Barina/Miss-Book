@@ -1,14 +1,16 @@
 export default {
   props: ['book'],
   template: `
-              <div class="user-review">
-        <ul class="review-list" v-for="review in book.reviews" :key="review.id"> 
-            <h2>{{review.fullname}} Review 👇</h2>
-                <li>Rating: {{review.rating}}</li> 
-                <li>{{review.fullname}} read this book at: {{review.readAt}} </li>
+            <!-- <div class="reviews"> -->
+              <div class="user-review" v-for="review in book.reviews" :key="review.id">
+            <h2>{{review.fullname}} Review 📝</h2> 
+            <hr>
+                <p>{{review.rating}} ⭐</p> 
+                <hr>
+                <p>date: {{review.readAt}} </p>
                 <button class="remove-btn" @click="remove(review.id)">x</button>  
-        </ul>
-</div>
+           </div>
+<!-- </div> -->
     `,
   methods: {
     remove(reviewId) {
@@ -16,7 +18,5 @@ export default {
       console.log(reviewId)
     },
   },
-  components: {
-    
-  },
+  components: {},
 }

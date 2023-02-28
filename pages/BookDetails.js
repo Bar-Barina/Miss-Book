@@ -30,10 +30,12 @@ export default {
         
 
          
-          <div class="review-section">
+          <section class="review-section">
           <AddReview :bookId="book.id" />
-          <ReviewList :book="book" @remove="removeReview" />
-        </div>
+          <div class="review-list-div">
+            <ReviewList  v-if="(book.reviews)" :book="book" @remove="removeReview" />
+            <h3 v-else>No <br> Reviews <br> Yet <br> 📝</h3>
+        </section>
         </section>
     `,
   data() {

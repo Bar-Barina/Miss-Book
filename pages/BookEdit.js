@@ -31,7 +31,6 @@ export default {
     save() {
       bookService.save(this.book)
           .then(savedBook => {
-              // console.log('Car saved', savedCar)
               eventBusService.emit('show-msg', { txt: 'Book saved', type: 'success' })
               this.$router.push('/book')
           })

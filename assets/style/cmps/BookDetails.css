@@ -7,9 +7,6 @@
   justify-items: center;
 }
 
-
-
-
 img {
   width: 270px;
   box-shadow: inset;
@@ -27,6 +24,7 @@ img {
   color: rgb(16, 51, 82);
     width: 102%;
     margin-top: 15px;
+    margin-bottom: 15px;
     /* width: 13.7%;
     flex-direction: column;
     padding: 10px;

@@ -3,7 +3,7 @@ import { bookService } from '../services/book.service.js'
 export default {
   props: ['bookId'],
   template: `
-    <form @submit.prevent="saveReview">
+    <form @submit.prevent="saveReview" class="user-add-review">
         <div class="user-review-form">
         <h2>Add A Review!</h2>
       <label for="fullname">Fullname:</label>

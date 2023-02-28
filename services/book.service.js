@@ -17,6 +17,8 @@ export const bookService = {
   getEmptyBook,
   addReview,
   removeRev,
+  addGoogleBook,
+  prepareData,
 }
 
 function query(filterBy = {}) {
@@ -26,24 +28,22 @@ function query(filterBy = {}) {
       books = books.filter((book) => regex.test(book.title))
     }
     // if (filterBy.amount) {
-    //   // books = books.filter(book => book.maxPrice >= filterBy.minPrice)
+    //   books = books.filter(book => book.amount >= filterBy.amount)
     // }
     return books
   })
 }
 
 function get(bookId) {
-  return storageService.get(BOOK_KEY, bookId)
-  .then(_setNextPrevBookId)
+  return storageService.get(BOOK_KEY, bookId).then(_setNextPrevBookId)
 }
 
 function remove(bookId) {
   return storageService.remove(BOOK_KEY, bookId)
 }
 function removeRev(bookId, reviewId) {
-  return get(bookId)
-  .then((book) => {
-    const idx = book.reviews.findIndex(review => review.id === reviewId)
+  return get(bookId).then((book) => {
+    const idx = book.reviews.findIndex((review) => review.id === reviewId)
     book.reviews.splice(idx, 1)
     return save(book)
   })
@@ -86,11 +86,42 @@ function addReview(bookId, review) {
 
 function _setNextPrevBookId(book) {
   return storageService.query(BOOK_KEY).then((books) => {
-      const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
-      book.nextBookId = books[bookIdx + 1] ? books[bookIdx + 1].id : books[0].id
-      book.prevBookId = books[bookIdx - 1]
-          ? books[bookIdx - 1].id
-          : books[books.length - 1].id
-      return book
+    const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+    book.nextBookId = books[bookIdx + 1] ? books[bookIdx + 1].id : books[0].id
+    book.prevBookId = books[bookIdx - 1]
+      ? books[bookIdx - 1].id
+      : books[books.length - 1].id
+    return book
   })
+}
+
+function addGoogleBook(item) {
+  // item = prepareData(item)
+  return storageService.query(BOOK_KEY).then((books) => {
+    const bookIdx = books.findIndex((currBook) => currBook.title === item.title)
+    if (bookIdx < 0) {
+      return storageService.post(BOOK_KEY, item)
+    }
+  })
+}
+
+function prepareData(item) {
+  const newBook = {
+    id: item.id,
+    title: item.volumeInfo.title,
+    subtitle: item.volumeInfo.subtitle,
+    authors: item.volumeInfo.authors,
+    publishedDate: item.volumeInfo.publishedDate,
+    pageCount: item.volumeInfo.pageCount,
+    categories: item.volumeInfo.categories,
+    thumbnail: item.volumeInfo.imageLinks.thumbnail,
+    language: item.volumeInfo.language,
+    listPrice: {
+      amount: utilService.getRandomIntInclusive(),
+      currencyCode: 'USD',
+      isOnSale: true,
+    },
+  }
+  console.log(newBook)
+  return newBook
 }

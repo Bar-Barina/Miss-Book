@@ -10,6 +10,7 @@ export default {
           <div class="actions-container">
           <BookFilter @filter="setFilterBy"/>
         <RouterLink to="/book/edit"> <i class="fa-solid fa-book"></i> Add a book</RouterLink>
+        <RouterLink to="/book/add"> Search by <i class="fa-brands fa-google"></i></RouterLink>
          </div>
           <BookList 
           v-if="books" 
@@ -22,7 +23,12 @@ export default {
     return {
       books: null,
       selectedBook: null,
-      filterBy: {},
+      filterBy: {
+        title: '',
+        amount: 700,
+        pageCount: 1500,
+        publishedDate: 2023,
+      },
     }
   },
   methods: {
@@ -32,10 +38,16 @@ export default {
         .then(() => {
           const idx = this.books.findIndex((book) => book.id === bookId)
           this.books.splice(idx, 1)
-          eventBusService.emit('show-msg', {txt: 'Book removed',type: 'success',})
+          eventBusService.emit('show-msg', {
+            txt: 'Book removed',
+            type: 'success',
+          })
         })
         .catch((err) => {
-          eventBusService.emit('show-msg', {txt: 'Book remove failed',type: 'error',})
+          eventBusService.emit('show-msg', {
+            txt: 'Book remove failed',
+            type: 'error',
+          })
         })
     },
     setFilterBy(filterBy) {
@@ -44,8 +56,20 @@ export default {
   },
   computed: {
     filteredBooks() {
-      const regex = new RegExp(this.filterBy.title, 'i')
-      return this.books.filter((book) => regex.test(book.title))
+      const regex = new RegExp(
+        this.filterBy.title &&
+          this.filterBy.amount &&
+          this.filterBy.pageCount &&
+          this.filterBy.publishedDate,
+        'i'
+      )
+      return this.books.filter(
+        (book) =>
+          regex.test(book.title) &&
+          this.filterBy.amount >= book.listPrice.amount &&
+          this.filterBy.pageCount >= book.pageCount &&
+          this.filterBy.publishedDate >= book.publishedDate
+      )
     },
   },
   created() {
