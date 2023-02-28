@@ -15,7 +15,11 @@ export default {
           <span :class="handleAmountClass">{{ formattedPrice }}</span>
           <hr>
           <img :src="book.thumbnail" alt="thumbnail">
-          <hr>
+          <hr> 
+          <nav>
+              <RouterLink :to="'/book/' + book.prevBookId">Previous Book</RouterLink> |
+              <RouterLink :to="'/book/' + book.nextBookId">Next Book</RouterLink>
+         </nav>
             <div class="extra-details">
             <p><span>Published Date:</span> {{book.publishedDate}} {{ handleDateState }}</p>
             <p><span>Page Count: </span>{{book.pageCount}} {{ handleReadingState }}</p>
@@ -38,8 +42,9 @@ export default {
     }
   },
   created() {
-    const { bookId } = this.$route.params
-    bookService.get(bookId).then((book) => (this.book = book))
+    // const { bookId } = this.$route.params
+    // bookService.get(bookId).then((book) => (this.book = book))
+    this.loadBook()
   },
   methods: {
     removeReview(reviewId) {
@@ -59,6 +64,10 @@ export default {
           })
         })
     },
+    loadBook() {
+      bookService.get(this.bookId)
+          .then(book => this.book = book)
+  },
   },
   computed: {
     handleReadingState() {
@@ -86,7 +95,16 @@ export default {
     authors() {
       return this.book.authors.join(', ')
     },
+    bookId() {
+      return this.$route.params.bookId
+  }
   },
+  watch: {
+    bookId() {
+        console.log('BookId Changed!')
+        this.loadBook()
+    }
+},
   components: {
     LongTxt,
     AddReview,

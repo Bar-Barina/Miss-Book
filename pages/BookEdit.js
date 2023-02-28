@@ -10,7 +10,7 @@ export default {
                 <input type="text" v-model="book.title" placeholder="Title">
                 <label for="text">Book Price ------></label>
                 <input type="number" v-model.number="book.amount">
-                <button>Save</button>
+                <button class="animate__heartBeat">Save</button>
             </form>
             <img src="assets/img/BookEdit.jpg" class="book-editor"/>
         </section>
@@ -38,6 +38,9 @@ export default {
           .catch(err=>{
               eventBusService.emit('show-msg', { txt: 'Book save failed', type: 'error' })
           })
+  },
+  animateSave() {
+    animate__heartBeat
   }
 }
 }
